@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: product
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        enabled: true
+        health-check-path: /actuator/health
+        health-check-timeout: 3s
+        health-check-interval: 10s
+        health-check-critical-timeout: 90m
+        query-passing: true
+        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+        prefer-ip-address: true
+        service-name: ${spring.application.name}
+        ip-address: ${spring.cloud.client.ip-address}
+
+server:
+  port: 8091
